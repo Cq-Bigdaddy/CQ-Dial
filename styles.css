@@ -1,0 +1,507 @@
+:root {
+    --primary-color: #4f46e5;
+    --secondary-color: #818cf8;
+    --accent-color: #c7d2fe;
+    --background-color: #f8fafc;
+    --sidebar-color: #ffffff;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-primary);
+}
+
+.container-fluid {
+    padding: 2rem;
+}
+
+
+/* Header Button Styling */
+#createWorkflowBtn {
+    background: var(--primary-color);
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.1);
+}
+
+#createWorkflowBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px -3px rgba(79, 70, 229, 0.2);
+}
+
+/* Modal Styling */
+.modal-content {
+    border-radius: 16px;
+    border: none;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    border-bottom: 1px solid #e2e8f0;
+    padding: 1.5rem;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 16px 16px 0 0;
+}
+
+.modal-body {
+    padding: 4rem;
+}
+
+#workflowNameInput {
+    border-radius: 12px;
+    border: 2px solid #e2e8f0;
+    transition: all 0.3s ease;
+    padding: 1.25rem 0.75rem 0.5rem; /* Increased top padding to create space for floating label */
+}
+
+#workflowNameInput:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+/* Sidebar Styling */
+.sidebar {
+    background-color: var(--sidebar-color);
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem !important;
+    height: calc(100vh - 8rem);
+    margin: -18px 1rem 1rem; /* Moves sidebar slightly upward with a negative top margin */
+    margin: 0.5rem 2 rem; /* Adjusted to move sidebar slightly upward */
+    overflow-y: auto;
+}
+
+.accordion-item {
+    border: none;
+    margin-bottom: 0.5rem;
+    background: transparent;
+}
+
+.accordion-button {
+    background-color: #f1f5f9;
+    border-radius: 12px !important;
+    font-weight: 600;
+    color: var(--text-primary);
+    padding: 1rem 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+    border-color: var(--primary-color);
+}
+
+.accordion-body {
+    padding: 1rem;
+}
+
+.sub-option {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    margin-bottom: 0.25rem;
+}
+
+.sub-option:hover {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    transform: translateX(5px);
+}
+
+/* Content Area Styling */
+.content {
+    padding: 1rem;
+}
+
+/* Options Container (Horizontal Box) */
+#optionsContainer {
+    background: white;
+    border-radius: 16px;
+    padding: 1rem !important;
+    min-height: 60px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    margin-top: -35px; /* Moves options container slightly upward */
+}
+
+/* Group Badge Container */
+.group-badge {
+    background-color: var(--accent-color);
+    padding: 1rem;
+    border-radius: 12px;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+/* Container for each main option */
+.main-option-container {
+    display: inline-block;
+    margin-right: 2rem; /* Space between main options */
+    vertical-align: top; /* Align sub-options vertically under main option */
+    margin-bottom: 2rem; /* Space below each main option group */
+}
+
+/* Main option header */
+.main-option-header {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+/* Cross mark for removing the entire main option group (hidden by default) */
+.remove-main-option {
+    color: black;
+    cursor: pointer;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none; /* Hidden by default */
+}
+
+/* Show cross mark when hovering over the main option */
+.main-option-container:hover .remove-main-option {
+    display: block;
+}
+/* Remove Option Icon */
+.remove-option {
+    color: black;
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin-left: 0.5rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+}
+/* Show cross mark when hovering over the sub-option */
+.option-badge:hover .remove-option {
+    display: block;
+}
+
+/* Sub-option Badge */
+.sub-option-badge {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.5rem 0.75rem;
+    border-radius: 12px;
+    font-weight: 500;
+    margin-top: 0.5rem;
+    display: inline-block;
+  
+}
+.option-badge {
+    background: var(--secondary-color) !important;
+    color: white;
+    padding: 0.5rem 1rem !important;
+    border-radius: 12px !important;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.25rem;
+    transition: all 0.2s ease;
+    display: inline-block;
+    position: relative;
+}
+
+.option-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+/* Container for each main option */
+.main-option-container {
+    display: inline-block;
+    margin-right: 2rem; /* Space between main options */
+    vertical-align: top; /* Align sub-options vertically under main option */
+}
+
+/* Main option header */
+.main-option-header {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+/* Canvas Container */
+#canvasContainer {
+    background: white;
+    border-radius: 16px;
+    border: 2px dashed var(--accent-color);
+    min-height: 500px;
+    margin-top: 0.5rem; /* Adjusted to move canvas container slightly upward */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-secondary);
+    font-weight: 500;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+#canvasContainer:hover {
+    border-color: var(--primary-color);
+    background-color: #fafafa;
+}
+
+#canvasContainer i {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+}
+
+#canvasContainer p.text-muted {
+    font-size: 0.9rem;
+}
+
+/* Workflow Name Display */
+#workflowName {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 1.75rem;
+    margin: 0.5rem 0; /* Adjusted margin to move it closer to the top */
+    transform: translate(15px, -35px); /* Moves right by 10px and up by 10px */
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        height: auto;
+        margin-bottom: 1rem;
+    }
+
+    .container-fluid {
+        padding: 1rem;
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}
+
+/* Animation Effects */
+.fade-in {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Button States and Interactions */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: #4338ca;
+    border-color: #4338ca;
+    transform: translateY(-1px);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+/* Form Elements Enhancement */
+.form-floating label {
+    color: var(--text-secondary);
+}
+
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label {
+    color: var(--primary-color);
+    opacity: 0.8;
+}
+
+/* Modal Animation Enhancement */
+.modal.fade .modal-dialog {
+    transition: transform 0.3s ease-out;
+}
+
+.modal.fade.show .modal-dialog {
+    transform: none;
+}
+
+/* Accordion Enhancements */
+.accordion-button::after {
+    transition: all 0.3s ease;
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-color: white;
+    border-radius: 50%;
+}
+
+/* Enhanced Option Badge */
+.option-badge i {
+    font-size: 0.9em;
+    margin-right: 0.3em;
+}
+
+.option-badge .remove-badge {
+    margin-left: 0.5rem;
+    opacity: 0.7;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.option-badge .remove-badge:hover {
+    opacity: 1;
+}
+
+/* Hover Effects for Interactive Elements */
+.interactive-element {
+    transition: all 0.2s ease;
+}
+
+.interactive-element:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Status Indicators */
+.status-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+.status-active {
+    background-color: #10b981;
+}
+
+.status-inactive {
+    background-color: #ef4444;
+}
+
+.status-pending {
+    background-color: #f59e0b;
+}
+
+/* Enhanced Text Styling */
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.description-text {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Loading States */
+.loading {
+    position: relative;
+    opacity: 0.7;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 2px solid var(--accent-color);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Focus States */
+*:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Drag and Drop Visual Feedback */
+.draggable {
+    cursor: grab;
+}
+
+.draggable:active {
+    cursor: grabbing;
+}
+
+.drop-zone {
+    border: 2px dashed var(--accent-color);
+    border-radius: 8px;
+    padding: 1rem;
+    transition: all 0.3s ease;
+}
+
+.drop-zone.drag-over {
+    background-color: var(--accent-color);
+    border-color: var(--primary-color);
+}
+
+/* Tooltip Styling */
+[data-tooltip] {
+    position: relative;
+}
+
+[data-tooltip]:before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.5rem;
+    background-color: var(--text-primary);
+    color: white;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+}
+
+[data-tooltip]:hover:before {
+    opacity: 1;
+    visibility: visible;
+}
