@@ -73,9 +73,11 @@ body {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     padding: 1.5rem !important;
     height: calc(100vh - 8rem);
-    margin: -18px 1rem 1rem; /* Moves sidebar slightly upward with a negative top margin */
+    margin: -27px 1rem 1rem; /* Moves sidebar slightly upward with a negative top margin */
     margin: 0.5rem 2 rem; /* Adjusted to move sidebar slightly upward */
     overflow-y: auto;
+    
+   
 }
 
 .accordion-item {
@@ -135,7 +137,7 @@ body {
     padding: 1rem !important;
     min-height: 60px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    margin-top: -35px; /* Moves options container slightly upward */
+    margin-top: -45px; /* Moves options container slightly upward */
 }
 
 /* Group Badge Container */
@@ -150,10 +152,14 @@ body {
 }
 /* Container for each main option */
 .main-option-container {
-    display: inline-block;
-    margin-right: 2rem; /* Space between main options */
-    vertical-align: top; /* Align sub-options vertically under main option */
-    margin-bottom: 2rem; /* Space below each main option group */
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+.sub-options-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
 }
 
 /* Main option header */
@@ -162,6 +168,7 @@ body {
     font-weight: bold;
     margin-bottom: 0.5rem;
     position: relative;
+    padding-right: 2rem;
 }
 /* Cross mark for removing the entire main option group (hidden by default) */
 .remove-main-option {
@@ -169,8 +176,9 @@ body {
     cursor: pointer;
     font-size: 1.5rem;
     position: absolute;
-    top: 0;
-    right: 0;
+    top: -2px; /* Keeps a fixed gap from the top of the container */
+    right: -0px; /* Positions it close to the right edge */
+    z-index: 1;
     display: none; /* Hidden by default */
 }
 
@@ -180,10 +188,11 @@ body {
 }
 /* Remove Option Icon */
 .remove-option {
-    color: black;
+    color: rgb(15, 15, 15);
     cursor: pointer;
     font-size: 1.2rem;
     margin-left: 0.5rem;
+    margin-top: -0.3rem;
     position: absolute;
     top: 0;
     right: 0;

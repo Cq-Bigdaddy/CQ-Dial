@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Handle sidebar sub-options to add them under the corresponding main option in the horizontal container
+    // Handle sidebar sub-options to add them in a row below the corresponding main options
     document.querySelectorAll(".sub-option").forEach(function (subOption) {
         subOption.addEventListener("click", function (e) {
             e.preventDefault();
@@ -125,6 +125,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     optionsContainer.appendChild(mainOptionContainer);
                 }
 
+                let subOptionsContainer = mainOptionContainer.querySelector(".sub-options-container");
+                if (!subOptionsContainer) {
+                    subOptionsContainer = document.createElement("div");
+                    subOptionsContainer.className = "sub-options-container";
+                    mainOptionContainer.appendChild(subOptionsContainer);
+                }
+
                 if (!document.getElementById(`option-${option}`)) {
                     const badge = document.createElement("div");
                     badge.className = "option-badge sub-option-badge";
@@ -139,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     });
 
                     badge.appendChild(removeIcon);
-                    mainOptionContainer.appendChild(badge);
+                    subOptionsContainer.appendChild(badge);
                 }
             }
         });
